@@ -92,9 +92,9 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">pylade.corpus_readers package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#pylade-corpus-readers-corpus-reader-module">pylade.corpus_readers.corpus_reader module</a></li>
-<li><a class="reference internal" href="#pylade-corpus-readers-csv-corpus-reader-module">pylade.corpus_readers.csv_corpus_reader module</a></li>
-<li><a class="reference internal" href="#pylade-corpus-readers-twitter-corpus-reader-module">pylade.corpus_readers.twitter_corpus_reader module</a></li>
+<li><a class="reference internal" href="#module-pylade.corpus_readers.corpus_reader">pylade.corpus_readers.corpus_reader module</a></li>
+<li><a class="reference internal" href="#module-pylade.corpus_readers.csv_corpus_reader">pylade.corpus_readers.csv_corpus_reader module</a></li>
+<li><a class="reference internal" href="#module-pylade.corpus_readers.twitter_corpus_reader">pylade.corpus_readers.twitter_corpus_reader module</a></li>
 </ul>
 </li>
 </ul>
@@ -165,14 +165,144 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pylade-corpus-readers-corpus-reader-module">
-<h2>pylade.corpus_readers.corpus_reader module<a class="headerlink" href="#pylade-corpus-readers-corpus-reader-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pylade.corpus_readers.corpus_reader">
+<span id="pylade-corpus-readers-corpus-reader-module"></span><h2>pylade.corpus_readers.corpus_reader module<a class="headerlink" href="#module-pylade.corpus_readers.corpus_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module for CorpusReader interface.</p>
+<dl class="class">
+<dt id="pylade.corpus_readers.corpus_reader.CorpusReader">
+<em class="property">class </em><code class="descname">CorpusReader</code><a class="reference internal" href="_modules/pylade/corpus_readers/corpus_reader.html#CorpusReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.corpus_readers.corpus_reader.CorpusReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<p>Corpus reader interface. Forces a common structure among corpus readers.</p>
+<dl class="method">
+<dt id="pylade.corpus_readers.corpus_reader.CorpusReader.all_instances">
+<code class="descname">all_instances</code><span class="sig-paren">(</span><em>limit=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/corpus_readers/corpus_reader.html#CorpusReader.all_instances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.corpus_readers.corpus_reader.CorpusReader.all_instances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all instances of the dataset with their labels and properties.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>limit</strong> (<em>int</em>) &#8211; The maximum number of instances to return.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body">A generator of corpus instances.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pylade-corpus-readers-csv-corpus-reader-module">
-<h2>pylade.corpus_readers.csv_corpus_reader module<a class="headerlink" href="#pylade-corpus-readers-csv-corpus-reader-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pylade.corpus_readers.csv_corpus_reader">
+<span id="pylade-corpus-readers-csv-corpus-reader-module"></span><h2>pylade.corpus_readers.csv_corpus_reader module<a class="headerlink" href="#module-pylade.corpus_readers.csv_corpus_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module for corpus readers for CSV datasets.</p>
+<dl class="class">
+<dt id="pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader">
+<em class="property">class </em><code class="descname">CSVCorpusReader</code><span class="sig-paren">(</span><em>corpus_path</em>, <em>delimiter='|'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/corpus_readers/csv_corpus_reader.html#CSVCorpusReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylade.corpus_readers.corpus_reader.CorpusReader" title="pylade.corpus_readers.corpus_reader.CorpusReader"><code class="xref py py-class docutils literal"><span class="pre">pylade.corpus_readers.corpus_reader.CorpusReader</span></code></a></p>
+<p>Corpus Reader for CSV datasets.</p>
+<dl class="attribute">
+<dt id="pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader.corpus_path">
+<code class="descname">corpus_path</code><a class="headerlink" href="#pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader.corpus_path" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; A path leading to a CSV corpus file.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader.delimiter">
+<code class="descname">delimiter</code><a class="headerlink" href="#pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader.delimiter" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; The character that separates the CSV corpus columns.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader.all_instances">
+<code class="descname">all_instances</code><span class="sig-paren">(</span><em>limit=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/corpus_readers/csv_corpus_reader.html#CSVCorpusReader.all_instances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader.all_instances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the corpus and returns a generator for all instances. Each instance
+is a dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>limit</strong> (<em>int</em>) &#8211; The maximum number of instances to return.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body">A generator of corpus instances.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pylade-corpus-readers-twitter-corpus-reader-module">
-<h2>pylade.corpus_readers.twitter_corpus_reader module<a class="headerlink" href="#pylade-corpus-readers-twitter-corpus-reader-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pylade.corpus_readers.twitter_corpus_reader">
+<span id="pylade-corpus-readers-twitter-corpus-reader-module"></span><h2>pylade.corpus_readers.twitter_corpus_reader module<a class="headerlink" href="#module-pylade.corpus_readers.twitter_corpus_reader" title="Permalink to this headline">¶</a></h2>
+<p>Corpus reader for twitter datasets.</p>
+<p>The corpus has been obtained using the original Twitter dataset with language
+labels (see URL below). Tweet IDs have been subsequently hydrated using Twitter
+APIs and NLTK. The result is a new dataset (CSV format) with the following
+structure:</p>
+<blockquote>
+<div>language|id_str|text</div></blockquote>
+<p>where <cite>language</cite> is the label, <cite>id_str</cite> is the tweet ID, and <cite>text</cite> is the
+content of the tweet.</p>
+<p>Original Twitter data:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://blog.twitter.com/2015/evaluating-language-identification-performance">https://blog.twitter.com/2015/evaluating-language-identification-performance</a></li>
+</ul>
+<dl class="class">
+<dt id="pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader">
+<em class="property">class </em><code class="descname">TwitterCorpusReader</code><span class="sig-paren">(</span><em>corpus_path</em>, <em>delimiter='|'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/corpus_readers/twitter_corpus_reader.html#TwitterCorpusReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader" title="pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader"><code class="xref py py-class docutils literal"><span class="pre">pylade.corpus_readers.csv_corpus_reader.CSVCorpusReader</span></code></a></p>
+<p>Corpus Reader for custom Twitter corpus.</p>
+<dl class="attribute">
+<dt id="pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.corpus_path">
+<code class="descname">corpus_path</code><a class="headerlink" href="#pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.corpus_path" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; A path leading to a CSV corpus file.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.delimiter">
+<code class="descname">delimiter</code><a class="headerlink" href="#pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.delimiter" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; The character that separates the CSV corpus columns.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.available_languages">
+<code class="descname">available_languages</code><a class="headerlink" href="#pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.available_languages" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of the available languages in the corpus.</p>
+<p><cite>und</cite> is for &#8216;undefined&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.languages_tweets_stats">
+<code class="descname">languages_tweets_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/corpus_readers/twitter_corpus_reader.html#TwitterCorpusReader.languages_tweets_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.languages_tweets_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a defaultdict containing the number of tweets for each
+language in the corpus. E.g.:</p>
+<blockquote>
+<div>defaultdict(int, {&#8216;en&#8217;: 200, &#8216;it&#8217;: 140})</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.tweets_with_language">
+<code class="descname">tweets_with_language</code><span class="sig-paren">(</span><em>languages</em>, <em>limit=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/corpus_readers/twitter_corpus_reader.html#TwitterCorpusReader.tweets_with_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.corpus_readers.twitter_corpus_reader.TwitterCorpusReader.tweets_with_language" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve tweets with specific languages from the corpus.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>languages</strong> (<em>list</em>) &#8211; A list of language labels used to filter tweets.</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; The maximum number of tweets to return.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><p class="first last">A generator of tweets with specific language labels.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

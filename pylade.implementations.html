@@ -92,8 +92,8 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">pylade.implementations package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#pylade-implementations-cavnar-trenkle-impl-module">pylade.implementations.cavnar_trenkle_impl module</a></li>
-<li><a class="reference internal" href="#pylade-implementations-implementation-module">pylade.implementations.implementation module</a></li>
+<li><a class="reference internal" href="#module-pylade.implementations.cavnar_trenkle_impl">pylade.implementations.cavnar_trenkle_impl module</a></li>
+<li><a class="reference internal" href="#module-pylade.implementations.implementation">pylade.implementations.implementation module</a></li>
 </ul>
 </li>
 </ul>
@@ -164,11 +164,168 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pylade-implementations-cavnar-trenkle-impl-module">
-<h2>pylade.implementations.cavnar_trenkle_impl module<a class="headerlink" href="#pylade-implementations-cavnar-trenkle-impl-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pylade.implementations.cavnar_trenkle_impl">
+<span id="pylade-implementations-cavnar-trenkle-impl-module"></span><h2>pylade.implementations.cavnar_trenkle_impl module<a class="headerlink" href="#module-pylade.implementations.cavnar_trenkle_impl" title="Permalink to this headline">¶</a></h2>
+<p>Cavnar Trenkle implementation module.</p>
+<dl class="class">
+<dt id="pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl">
+<em class="property">class </em><code class="descname">CavnarTrenkleImpl</code><a class="reference internal" href="_modules/pylade/implementations/cavnar_trenkle_impl.html#CavnarTrenkleImpl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylade.implementations.implementation.Implementation" title="pylade.implementations.implementation.Implementation"><code class="xref py py-class docutils literal"><span class="pre">pylade.implementations.implementation.Implementation</span></code></a></p>
+<p>Cavnar Trenkle implementation class.</p>
+<dl class="method">
+<dt id="pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>model</em>, <em>test_instances</em>, <em>languages=None</em>, <em>error_values=None</em>, <em>split_languages=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/implementations/cavnar_trenkle_impl.html#CavnarTrenkleImpl.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate model on test data and gather results.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>model</strong> &#8211; A list of training profiles for languages.</li>
+<li><strong>test_instances</strong> (<em>iterable</em>) &#8211; An iterable whose elements are
+dictionaries. These dictionaries must have <cite>text</cite> and <cite>language</cite>
+keys with their relative values.</li>
+<li><strong>languages</strong> (<em>iterable</em>) &#8211; A list of language labels. When specified,
+the model is  only evaluated on test instances with these labels
+(e.g. &#8216;it&#8217;).</li>
+<li><strong>split_languages</strong> (<em>bool</em>) &#8211; if <cite>True</cite>, each language in <cite>languages</cite> is
+evaluated separately and results will be split by language. If
+<cite>False</cite> (default) results are computed over all instances
+belonging to <cite>languages</cite>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><p class="first last">A single result in the form of <cite>{&#8216;tested_languages&#8217; &#8211; {error_value:
+accuracy}}</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to use <cite>test_instances</cite> multiple times, they need to be
+stored in a list. Since they are a generator object, they would be
+exhausted after the first iteration.</p>
 </div>
-<div class="section" id="pylade-implementations-implementation-module">
-<h2>pylade.implementations.implementation module<a class="headerlink" href="#pylade-implementations-implementation-module" title="Permalink to this headline">¶</a></h2>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl.predict_language">
+<code class="descname">predict_language</code><span class="sig-paren">(</span><em>text</em>, <em>training_profiles</em>, <em>error_value=8000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/implementations/cavnar_trenkle_impl.html#CavnarTrenkleImpl.predict_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl.predict_language" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict language for a text.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>text</strong> (<em>str</em>) &#8211; A text whose language has to be detected.</li>
+<li><strong>training_profiles</strong> (<em>dict</em>) &#8211; A dictionary whose keys are language
+labels. Each value is a list of &#8216;ngrams&#8217; sorted by frequency.
+This is the actual model used for prediction.</li>
+<li><strong>error_value</strong> (<em>int</em>) &#8211; The amount that penalizes the prediction whenever
+an ngram is not present in the training profile. This value
+should be decided based on tuning on the test set. See paper for
+more details.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The predicted language label (e.g. &#8216;en&#8217;).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">implementation</span> <span class="o">=</span> <span class="n">CavnarTrenkleImpl</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">training_profiles</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span><span class="s1">&#39;en&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;lo&#39;</span><span class="p">,</span> <span class="s1">&#39;llo&#39;</span><span class="p">,</span> <span class="s1">&#39;ll&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hell&#39;</span><span class="p">,</span> <span class="s1">&#39;hel&#39;</span><span class="p">,</span> <span class="s1">&#39;he&#39;</span><span class="p">,</span>
+<span class="gp">... </span>      <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;ello&#39;</span><span class="p">,</span> <span class="s1">&#39;ell&#39;</span><span class="p">,</span> <span class="s1">&#39;el&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],</span>
+<span class="gp">... </span><span class="s1">&#39;it&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;iao&#39;</span><span class="p">,</span> <span class="s1">&#39;ia&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;ciao&#39;</span><span class="p">,</span> <span class="s1">&#39;cia&#39;</span><span class="p">,</span> <span class="s1">&#39;ci&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;ao&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">implementation</span><span class="o">.</span><span class="n">predict_language</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">training_profiles</span><span class="p">)</span>
+<span class="go">&#39;en&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This is the same as:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lang_distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_language_scores</span><span class="p">(</span> 
+<span class="gp">... </span>   <span class="n">text</span><span class="p">,</span> <span class="n">training_profiles</span><span class="p">,</span> <span class="n">error_value</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">min</span><span class="p">(</span><span class="n">lang_distances</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">lang_distances</span><span class="o">.</span><span class="n">get</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method could be improved by simply iterating over distances and
+discarding them when they are smaller than the previous one. This
+would not allow us to reuse <cite>predict_language_scores</cite> here.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>labeled_instances</em>, <em>limit=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/implementations/cavnar_trenkle_impl.html#CavnarTrenkleImpl.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.cavnar_trenkle_impl.CavnarTrenkleImpl.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>labeled_instances</strong> (<em>iterable</em>) &#8211; An iterable whose elements are
+dictionaries. These dictionaries must have <cite>text</cite> and <cite>language</cite>
+keys with their relative values.</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; The number of entries in the training language
+profiles. Less entries make training faster, but it is better
+to keep a balance between speed and accuracy.</li>
+<li><strong>verbose</strong> (<em>bool</em>) &#8211; If <cite>True</cite>, print information about training.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><p>A list of language profiles.</p>
+<p>A profile is a list of ngrams sorted in reverse order (from the
+most frequent to the less frequent). Each language has its own list
+(profile). This method returns a dictionary in which each key is a
+language whose value is a list of ngrams (the language profile).</p>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pylade.implementations.implementation">
+<span id="pylade-implementations-implementation-module"></span><h2>pylade.implementations.implementation module<a class="headerlink" href="#module-pylade.implementations.implementation" title="Permalink to this headline">¶</a></h2>
+<p>Module for Implementation interface.</p>
+<dl class="class">
+<dt id="pylade.implementations.implementation.Implementation">
+<em class="property">class </em><code class="descname">Implementation</code><a class="reference internal" href="_modules/pylade/implementations/implementation.html#Implementation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.implementation.Implementation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<p>Implementation interface.</p>
+<p>Forces a common structure among implementations of different NLP techniques.
+An implementation can be thought as a model (e.g.: Ngram model
+implementation, Cavnar-Trenkle model implementation, etc.).</p>
+<dl class="method">
+<dt id="pylade.implementations.implementation.Implementation.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/implementations/implementation.html#Implementation.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.implementation.Implementation.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylade.implementations.implementation.Implementation.predict_language">
+<code class="descname">predict_language</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/implementations/implementation.html#Implementation.predict_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.implementation.Implementation.predict_language" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict language.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylade.implementations.implementation.Implementation.train">
+<code class="descname">train</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pylade/implementations/implementation.html#Implementation.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylade.implementations.implementation.Implementation.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train model.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
