@@ -1,5 +1,5 @@
 #!/bin/bash
-GH_PAGES_SOURCES=docs pylade
+GH_PAGES_SOURCES='docs pylade'
 
 # git checkout gh-pages
 rm -rf build _sources _static
@@ -10,5 +10,6 @@ mv -fv docs/build/html/* ./
 rm -rf ${GH_PAGES_SOURCES}
 touch .nojekyll
 git add -A
-git ci -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages
+git ci -m "Generated gh-pages for `git log master -1 --format='%B (%H)'`"
+git push origin gh-pages
 # git checkout master
