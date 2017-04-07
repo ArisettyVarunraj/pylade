@@ -1,5 +1,5 @@
 #!/bin/bash
-GH_PAGES_SOURCES=docs
+GH_PAGES_SOURCES=docs pylade
 
 # git checkout gh-pages
 rm -rf build _sources _static
